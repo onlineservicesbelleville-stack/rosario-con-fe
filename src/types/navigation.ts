@@ -1,0 +1,21 @@
+export type RootStackParamList = {
+  index: undefined;
+  onboarding: undefined;
+  home: undefined;
+  'rosary/index': undefined;
+  'rosary/guided': { mysteryType?: string };
+  'rosary/mystery/[id]': { id: string };
+  'rosary/completed': { totalSteps: number; mysteryType: string };
+  'prayers/index': undefined;
+  'prayers/[id]': { id: string };
+  'mysteries/index': undefined;
+  'mysteries/[id]': { id: string };
+  'kids/index': undefined;
+  'kids/lesson/[id]': { id: string };
+  'kids/short-rosary': undefined;
+  'family/index': undefined;
+  'premium/paywall': undefined;
+  'settings/index': undefined;
+  'auth/login': undefined;
+  'auth/register': undefined;
+};
