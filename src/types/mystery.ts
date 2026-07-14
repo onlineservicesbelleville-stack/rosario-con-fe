@@ -9,7 +9,10 @@ export interface Mystery {
   meditation: string;
   kidsVersion: string;
   intention: string;
+  /** URL remota (Firebase Storage — Fase 3). */
   audioUrl?: string;
+  /** Asset local cargado con require(). Tiene prioridad sobre audioUrl. */
+  audioSource?: number;
   imageUrl?: string;
   isPremium: boolean;
   order: number;

@@ -154,9 +154,13 @@ export default function GuidedRosaryScreen() {
           </View>
         )}
 
-        {/* Audio */}
-        {currentStep.audioUrl && (
-          <AudioPlayer title={currentStep.title} audioUrl={currentStep.audioUrl} />
+        {/* Audio — muestra player si hay asset local o URL remota */}
+        {(currentStep.audioSource || currentStep.audioUrl) && (
+          <AudioPlayer
+            title={currentStep.title}
+            audioSource={currentStep.audioSource}
+            audioUrl={currentStep.audioUrl}
+          />
         )}
       </ScrollView>
 

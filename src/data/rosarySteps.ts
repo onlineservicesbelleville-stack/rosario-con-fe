@@ -2,8 +2,10 @@ import { RosaryStep } from '../types/rosary';
 import { MysteryType } from '../types/mystery';
 import { MYSTERIES } from './mysteries';
 import { PRAYERS } from './prayers';
+import { PRAYER_AUDIO_ASSETS } from './audioAssets';
 
 const prayerText = (id: string) => PRAYERS.find((p) => p.id === id)?.text ?? '';
+const audio = (id: string) => PRAYER_AUDIO_ASSETS[id];
 
 export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
   const mysteries = MYSTERIES.filter((m) => m.type === mysteryType).sort(
@@ -30,6 +32,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Señal de la Cruz',
     text: prayerText('senal-de-la-cruz'),
+    audioSource: audio('senal-de-la-cruz'),
     isPremium: false,
   });
 
@@ -38,6 +41,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Credo de los Apóstoles',
     text: prayerText('credo'),
+    audioSource: audio('credo'),
     isPremium: false,
   });
 
@@ -46,6 +50,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Padre Nuestro',
     text: prayerText('padre-nuestro'),
+    audioSource: audio('padre-nuestro'),
     isPremium: false,
   });
 
@@ -55,6 +60,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
       type: 'prayer',
       title: `Ave María (${i} de 3)`,
       text: prayerText('ave-maria'),
+      audioSource: audio('ave-maria'),
       isPremium: false,
       repetitions: 3,
       currentRepetition: i,
@@ -66,6 +72,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Gloria',
     text: prayerText('gloria'),
+    audioSource: audio('gloria'),
     isPremium: false,
   });
 
@@ -77,6 +84,8 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
       type: 'mystery',
       title: `${num}° Misterio: ${mystery.title}`,
       text: mystery.meditation,
+      audioSource: mystery.audioSource,
+      audioUrl: mystery.audioUrl,
       isPremium: mystery.isPremium,
       mysteryNumber: num,
       mysteryType,
@@ -87,6 +96,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
       type: 'prayer',
       title: 'Padre Nuestro',
       text: prayerText('padre-nuestro'),
+      audioSource: audio('padre-nuestro'),
       isPremium: false,
     });
 
@@ -96,6 +106,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
         type: 'prayer',
         title: `Ave María (${i} de 10)`,
         text: prayerText('ave-maria'),
+        audioSource: audio('ave-maria'),
         isPremium: mystery.isPremium,
         repetitions: 10,
         currentRepetition: i,
@@ -107,6 +118,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
       type: 'prayer',
       title: 'Gloria',
       text: prayerText('gloria'),
+      audioSource: audio('gloria'),
       isPremium: false,
     });
 
@@ -115,6 +127,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
       type: 'prayer',
       title: 'Jaculatoria de Fátima',
       text: prayerText('jaculatoria'),
+      audioSource: audio('jaculatoria'),
       isPremium: false,
     });
   });
@@ -124,6 +137,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Salve Regina',
     text: prayerText('salve'),
+    audioSource: audio('salve'),
     isPremium: false,
   });
 
@@ -132,6 +146,7 @@ export function buildRosarySteps(mysteryType: MysteryType): RosaryStep[] {
     type: 'prayer',
     title: 'Oración Final',
     text: prayerText('oracion-final'),
+    audioSource: audio('oracion-final'),
     isPremium: false,
   });
 

@@ -37,7 +37,11 @@ export default function PrayerDetailScreen() {
           <Text style={styles.explanation}>{prayer.explanation}</Text>
         </AppCard>
 
-        <AudioPlayer title={prayer.title} audioUrl={prayer.audioUrl} />
+        <AudioPlayer
+          title={prayer.title}
+          audioSource={prayer.audioSource}
+          audioUrl={prayer.audioUrl}
+        />
       </ScrollView>
     </View>
   );

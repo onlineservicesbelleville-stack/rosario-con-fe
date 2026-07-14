@@ -1,6 +1,7 @@
 import { Mystery, MysteryGroup, MysteryType } from '../types/mystery';
+import { MYSTERY_AUDIO_ASSETS } from './audioAssets';
 
-export const MYSTERIES: Mystery[] = [
+const MYSTERIES_BASE: Mystery[] = [
   // ── GOZOSOS ──
   {
     id: 'gozoso-1',
@@ -289,6 +290,11 @@ export const MYSTERIES: Mystery[] = [
     order: 20,
   },
 ];
+
+export const MYSTERIES: Mystery[] = MYSTERIES_BASE.map((m) => ({
+  ...m,
+  audioSource: MYSTERY_AUDIO_ASSETS[m.id],
+}));
 
 export const MYSTERY_GROUPS: MysteryGroup[] = [
   {

@@ -8,7 +8,10 @@ export interface RosaryStep {
   type: RosaryStepType;
   title: string;
   text: string;
+  /** URL remota (Firebase Storage — Fase 3). */
   audioUrl?: string;
+  /** Asset local cargado con require(). Tiene prioridad sobre audioUrl. */
+  audioSource?: number;
   isPremium: boolean;
   mysteryNumber?: number;
   mysteryType?: MysteryType;

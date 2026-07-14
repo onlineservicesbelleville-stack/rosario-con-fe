@@ -2,24 +2,30 @@ import { Audio, AVPlaybackStatus } from 'expo-av';
 
 let currentSound: Audio.Sound | null = null;
 
-export interface AudioState {
-  isLoaded: boolean;
-  isPlaying: boolean;
-  isLoading: boolean;
-  position: number;
-  duration: number;
-  error: string | null;
-}
+/**
+ * Fuente de audio:
+ * - number → asset local cargado con require() (Metro)
+ * - string → URL remota (Firebase Storage o HTTPS)
+ */
+export type AudioSource = number | string;
 
 export const audioService = {
-  async load(uri: string): Promise<Audio.Sound | null> {
+  async load(source: AudioSource): Promise<Audio.Sound | null> {
     try {
       await audioService.stop();
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
         staysActiveInBackground: true,
       });
-      const { sound } = await Audio.Sound.createAsync({ uri }, { shouldPlay: false });
+
+      // number = asset local; string = URL remota
+      const playbackSource =
+        typeof source === 'number' ? source : { uri: source };
+
+      const { sound } = await Audio.Sound.createAsync(
+        playbackSource,
+        { shouldPlay: false },
+      );
       currentSound = sound;
       return sound;
     } catch {
@@ -28,15 +34,11 @@ export const audioService = {
   },
 
   async play(): Promise<void> {
-    if (currentSound) {
-      await currentSound.playAsync();
-    }
+    if (currentSound) await currentSound.playAsync();
   },
 
   async pause(): Promise<void> {
-    if (currentSound) {
-      await currentSound.pauseAsync();
-    }
+    if (currentSound) await currentSound.pauseAsync();
   },
 
   async stop(): Promise<void> {
@@ -48,9 +50,7 @@ export const audioService = {
   },
 
   async seekTo(positionMs: number): Promise<void> {
-    if (currentSound) {
-      await currentSound.setPositionAsync(positionMs);
-    }
+    if (currentSound) await currentSound.setPositionAsync(positionMs);
   },
 
   getStatus(): Promise<AVPlaybackStatus | null> {
@@ -59,8 +59,6 @@ export const audioService = {
   },
 
   setStatusCallback(cb: (status: AVPlaybackStatus) => void): void {
-    if (currentSound) {
-      currentSound.setOnPlaybackStatusUpdate(cb);
-    }
+    if (currentSound) currentSound.setOnPlaybackStatusUpdate(cb);
   },
 };

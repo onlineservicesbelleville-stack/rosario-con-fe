@@ -47,7 +47,11 @@ export default function MysteryDetailScreen() {
           <Text style={styles.body}>{mystery.kidsVersion}</Text>
         </AppCard>
 
-        <AudioPlayer title={mystery.title} audioUrl={mystery.audioUrl} />
+        <AudioPlayer
+          title={mystery.title}
+          audioSource={mystery.audioSource}
+          audioUrl={mystery.audioUrl}
+        />
       </ScrollView>
     </View>
   );
