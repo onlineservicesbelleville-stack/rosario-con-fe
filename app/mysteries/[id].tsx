@@ -6,10 +6,11 @@ import { AppHeader } from '../../src/components/AppHeader';
 import { AudioPlayer } from '../../src/components/AudioPlayer';
 import { PremiumBadge } from '../../src/components/PremiumBadge';
 import { AppCard } from '../../src/components/AppCard';
+import { MysteryImage } from '../../src/components/MysteryImage';
 import { getMysteryById, getMysteryGroupColor } from '../../src/data/mysteries';
 import { getMysteryLabel, getMysteryDays } from '../../src/utils/mysteryUtils';
 import { Colors } from '../../src/constants/colors';
-import { FontSize, FontWeight, Spacing } from '../../src/constants/theme';
+import { BorderRadius, FontSize, FontWeight, Spacing } from '../../src/constants/theme';
 
 export default function MysteryDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -24,6 +25,8 @@ export default function MysteryDetailScreen() {
     <View style={styles.screen}>
       <AppHeader title={mystery.title} showBack />
       <ScrollView contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + Spacing.xl }]}>
+        <MysteryImage imageSource={mystery.imageSource} style={styles.banner} iconSize={48} />
+
         <View style={[styles.badge, { backgroundColor: color + '20', borderColor: color }]}>
           <Text style={[styles.badgeText, { color }]}>{getMysteryLabel(mystery.type)}</Text>
           <Text style={styles.badgeDays}>· {getMysteryDays(mystery.type)}</Text>
@@ -60,6 +63,11 @@ export default function MysteryDetailScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: Colors.background },
   content: { padding: Spacing.md, gap: Spacing.md },
+  banner: {
+    width: '100%',
+    height: 200,
+    borderRadius: BorderRadius.lg,
+  },
   badge: {
     flexDirection: 'row',
     alignItems: 'center',

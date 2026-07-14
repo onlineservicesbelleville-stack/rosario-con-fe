@@ -6,6 +6,7 @@ import { getMysteryGroupColor } from '../data/mysteries';
 import { getMysteryDays } from '../utils/mysteryUtils';
 import { mysteryLightColor } from '../constants/colors';
 import { PremiumBadge } from './PremiumBadge';
+import { MysteryImage } from './MysteryImage';
 import { Colors } from '../constants/colors';
 import { BorderRadius, FontSize, FontWeight, Shadow, Spacing } from '../constants/theme';
 
@@ -29,6 +30,9 @@ export function MysteryCard({ mystery, onPress, index }: Props) {
           {num}
         </Text>
       </View>
+
+      {/* Imagen del tipo de misterio */}
+      <MysteryImage imageSource={mystery.imageSource} style={styles.thumb} iconSize={22} />
 
       {/* Contenido */}
       <View style={[styles.content, { backgroundColor: lightBg }]}>
@@ -66,6 +70,10 @@ const styles = StyleSheet.create({
   num: {
     fontSize: FontSize.xl,
     fontWeight: FontWeight.bold,
+  },
+  thumb: {
+    width: 56,
+    height: 56,
   },
   content: {
     flex: 1,

@@ -1,5 +1,6 @@
 import { Mystery, MysteryGroup, MysteryType } from '../types/mystery';
 import { MYSTERY_AUDIO_ASSETS } from './audioAssets';
+import { MYSTERY_TYPE_IMAGES } from './mysteryImages';
 
 const MYSTERIES_BASE: Mystery[] = [
   // ── GOZOSOS ──
@@ -294,6 +295,7 @@ const MYSTERIES_BASE: Mystery[] = [
 export const MYSTERIES: Mystery[] = MYSTERIES_BASE.map((m) => ({
   ...m,
   audioSource: MYSTERY_AUDIO_ASSETS[m.id],
+  imageSource: MYSTERY_TYPE_IMAGES[m.type],
 }));
 
 export const MYSTERY_GROUPS: MysteryGroup[] = [

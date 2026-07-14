@@ -13,7 +13,10 @@ export interface Mystery {
   audioUrl?: string;
   /** Asset local cargado con require(). Tiene prioridad sobre audioUrl. */
   audioSource?: number;
+  /** URL remota de imagen (Firebase Storage — Fase 3). */
   imageUrl?: string;
+  /** Imagen local cargada con require(), según el tipo de misterio. Tiene prioridad sobre imageUrl. */
+  imageSource?: number;
   isPremium: boolean;
   order: number;
 }
