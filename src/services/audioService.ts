@@ -28,7 +28,8 @@ export const audioService = {
       );
       currentSound = sound;
       return sound;
-    } catch {
+    } catch (error) {
+      console.error('[audioService] Error al cargar audio:', error);
       return null;
     }
   },

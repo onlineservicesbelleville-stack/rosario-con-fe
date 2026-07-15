@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet, StyleProp, ImageStyle } from 'react-native';
+import { Image, View, StyleSheet, StyleProp, ImageStyle, ImageResizeMode } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../constants/colors';
 
@@ -8,9 +8,10 @@ interface Props {
   imageSource?: number;
   style: StyleProp<ImageStyle>;
   iconSize?: number;
+  resizeMode?: ImageResizeMode;
 }
 
-export function MysteryImage({ imageSource, style, iconSize = 28 }: Props) {
+export function MysteryImage({ imageSource, style, iconSize = 28, resizeMode = 'cover' }: Props) {
   if (!imageSource) {
     return (
       <View style={[styles.placeholder, style]}>
@@ -19,7 +20,7 @@ export function MysteryImage({ imageSource, style, iconSize = 28 }: Props) {
     );
   }
 
-  return <Image source={imageSource} style={style} resizeMode="cover" />;
+  return <Image source={imageSource} style={style} resizeMode={resizeMode} />;
 }
 
 const styles = StyleSheet.create({

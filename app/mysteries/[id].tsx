@@ -25,7 +25,12 @@ export default function MysteryDetailScreen() {
     <View style={styles.screen}>
       <AppHeader title={mystery.title} showBack />
       <ScrollView contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + Spacing.xl }]}>
-        <MysteryImage imageSource={mystery.imageSource} style={styles.banner} iconSize={48} />
+        <MysteryImage
+          imageSource={mystery.imageSource}
+          style={styles.banner}
+          iconSize={48}
+          resizeMode="contain"
+        />
 
         <View style={[styles.badge, { backgroundColor: color + '20', borderColor: color }]}>
           <Text style={[styles.badgeText, { color }]}>{getMysteryLabel(mystery.type)}</Text>
@@ -67,6 +72,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     borderRadius: BorderRadius.lg,
+    backgroundColor: Colors.card,
   },
   badge: {
     flexDirection: 'row',
